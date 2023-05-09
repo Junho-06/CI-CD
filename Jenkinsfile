@@ -2,6 +2,8 @@ pipeline {
     agent any
 
     parameters {
+
+        // stage
         booleanParam(name : 'BUILD_DOCKER_IMAGE', defaultValue : true)
         booleanParam(name : 'PUSH_DOCKER_IMAGE', defaultValue : true)
         booleanParam(name : 'DEPLOY_WORKLOAD', defaultValue : true)
