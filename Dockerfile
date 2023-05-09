@@ -8,12 +8,12 @@ WORKDIR /app
 EXPOSE 8080
 
 # Dependency caching with docker cache
-ADD build.gradle ${WORKDIR}/
+ADD build.gradle /
 RUN gradle build -x test --parallel --continue > /dev/null 2>&1 || true
 
 # Move application Jar file to conatiner
 ARG JAR_FILE=build/libs/CICD_Study-0.0.1-SNAPSHOT.jar
-ADD ${JAR_FILE} ${WORKDIR}/cicd_study-0.0.1.jar
+COPY ${JAR_FILE} /cicd_study-0.0.1.jar
 
 # Run application jar file
-ENTRYPOINT ["java", "-jar", "%{WORKDIR}/cicd_study-0.0.1.jar"]
+ENTRYPOINT ["java", "-jar", "/cicd_study-0.0.1.jar"]
