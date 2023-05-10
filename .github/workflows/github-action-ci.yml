@@ -1,0 +1,32 @@
+name: CICD-study-github-action-ci
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  CI:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
+
+    - name: Run build with Gradle wrapper
+      run: ./gradlew clean build
+      
+    - name: Make app zip folder
+      run: zip -r cicd-jar *
+      shell: bash
+
+    - name: Upload zip to S3
+      run: aws s3 cp --region ap-northeast-2 cicd-jar.zip s3://cicd-study-jar-bucket
