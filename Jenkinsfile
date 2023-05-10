@@ -53,16 +53,5 @@ pipeline {
                 '''
             }
         }
-
-//         stage('Deploy Workload') {
-//             when {
-//                 expression { return params.DEPLOY_WORKLOAD }
-//             }
-//             steps {
-//                 sh'''#!/bin/bash
-//                     scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
-//                 '''
-//             }
-//         }
     }
 }
