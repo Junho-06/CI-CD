@@ -33,7 +33,7 @@ pipeline {
                 expression { return params.BUILD_DOCKER_IMAGE }
             }
             steps {
-                dir('/') {
+                dir("${env.WORKSPACE}") {
                     sh 'docker build -t ${ECR_DOCKER_IMAGE}:${ECR_DOCKER_TAG} .'
                 }
             }
