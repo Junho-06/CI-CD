@@ -12,6 +12,7 @@ ADD build.gradle /
 RUN gradle build -x test --parallel --continue > /dev/null 2>&1 || true
 
 # Gradle Build
+COPY . ${WORKDIR}
 RUN ./gradlew clean build
 
 # Move application Jar file to conatiner
