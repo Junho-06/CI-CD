@@ -38,8 +38,12 @@ pipeline {
                 }
             }
             post {
-                always {
+                success {
                     echo "Docker Image Build Success"
+                }
+
+                failure {
+                    echo "Docker Image Build Fail"
                 }
             }
         }
