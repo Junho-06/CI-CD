@@ -35,8 +35,7 @@ pipeline {
             steps {
                 dir("${env.WORKSPACE}") {
                     sh '''
-                    aws s3 cp --region ap-northeast-2 --acl private s3://cicd-study-jar-bucket/cicd-jar.zip build/libs/
-                    unzip build/libs/cicd-jar.zip
+                    ./gradlew clean build
                     docker build -t ${ECR_DOCKER_IMAGE}:${ECR_DOCKER_TAG} .
                     '''
                 }
