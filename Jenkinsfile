@@ -16,7 +16,7 @@ pipeline {
         // CD
         string(name : 'TG_SERVER_USER', defaultValue : 'ec2-user')
         string(name : 'TG_SERVER_PATH', defaultValue : '/home/ec2-user/')
-        string(name : 'TG_SERVER', defaultValue : '172.31.12.70')
+        string(name : 'TG_SERVER', defaultValue : '172.31.3.32')
     }
 
     environment {
