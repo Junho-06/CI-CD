@@ -23,10 +23,6 @@ jobs:
 
     - name: Run build with Gradle wrapper
       run: ./gradlew clean build
-      
-    - name: Make app zip folder
-      run: zip -r cicd-jar *
-      shell: bash
 
     - name: Upload zip to S3
       uses: aws-actions/configure-aws-credentials@v1
@@ -36,4 +32,4 @@ jobs:
         aws-region: ap-northeast-2
 
     - name: upload
-      run: aws s3 cp --region ap-northeast-2 --acl private ./cicd-jar.zip s3://cicd-study-jar-bucket
+      run: aws s3 cp --region ap-northeast-2 --acl private ./build/libs/CICD_Study-0.0.1-SNAPSHOT.jar s3://cicd-study-jar-bucket
