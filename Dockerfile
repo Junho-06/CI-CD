@@ -12,8 +12,8 @@ ADD build.gradle /
 RUN gradle build -x test --parallel --continue > /dev/null 2>&1 || true
 
 # Gradle Build
-COPY . ${WORKDIR}
-RUN ./gradlew clean build
+COPY . .
+RUN ./graldew clean build
 
 # Move application Jar file to conatiner
 ARG JAR_FILE=build/libs/CICD_Study-0.0.1-SNAPSHOT.jar
