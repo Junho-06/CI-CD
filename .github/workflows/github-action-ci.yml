@@ -35,4 +35,5 @@ jobs:
         AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
       aws-region: ap-northeast-2
 
+    - name: upload
       run: aws s3 cp --region ap-northeast-2 --acl private ./cicd-jar.zip s3://cicd-study-jar-bucket
