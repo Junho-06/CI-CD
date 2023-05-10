@@ -2,7 +2,7 @@
 FROM openjdk:17
 
 # Set WORKDIR
-WORKDIR /app
+WORKDIR /tmp
 
 # Expose 8080 PORT to allow container access
 EXPOSE 8080
