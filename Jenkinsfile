@@ -34,7 +34,7 @@ pipeline {
             }
             steps {
                 dir("${env.WORKSPACE}") {
-                    sh 'docker build -t ${ECR_DOCKER_IMAGE}:${ECR_DOCKER_TAG} .'
+                    sh 'sudo docker build -t ${ECR_DOCKER_IMAGE}:${ECR_DOCKER_TAG} .'
                 }
             }
             post {
@@ -50,7 +50,7 @@ pipeline {
             }
             steps {
                 sh '''
-                    aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${ECR_REPOSITORY}
+                    aws ecr get-login-password --region ${REGION} | sudo docker login --username AWS --password-stdin ${ECR_REPOSITORY}
                     docker push ${ECR_DOCKER_IMAGE}:${ECR_DOCKER_TAG}
                 '''
             }
