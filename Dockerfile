@@ -11,8 +11,11 @@ EXPOSE 8080
 ADD build.gradle /
 RUN gradle build -x test --parallel --continue > /dev/null 2>&1 || true
 
+# Gradle Build
+RUN ./gradlew clean build
+
 # Move application Jar file to conatiner
-ARG JAR_FILE=/Users/junho/IdeaProjects/CICD_Study/build/libs/CICD_Study-0.0.1-SNAPSHOT-plain.jar
+ARG JAR_FILE=build/libs/CICD_Study-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} /cicd_study-0.0.1.jar
 
 # Run application jar file
