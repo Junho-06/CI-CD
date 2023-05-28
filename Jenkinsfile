@@ -9,14 +9,14 @@ pipeline {
         booleanParam(name : 'DEPLOY_WORKLOAD', defaultValue : true)
 
         // CI
-        string(name : 'AWS_ACCOUNT_ID', defaultValue : '250832144271')
+        string(name : 'AWS_ACCOUNT_ID')
         string(name : 'DOCKER_IMAGE_NAME', defaultValue : 'cicd-study')
         string(name : 'DOCKER_TAG', defaultValue : '1.0')
 
         // CD
         string(name : 'TG_SERVER_USER', defaultValue : 'ec2-user')
         string(name : 'TG_SERVER_PATH', defaultValue : '/home/ec2-user/')
-        string(name : 'TG_SERVER', defaultValue : '172.31.3.32')
+        string(name : 'TG_SERVER')
     }
 
     environment {
@@ -35,8 +35,7 @@ pipeline {
             steps {
                 dir("${env.WORKSPACE}") {
                     sh '''
-                    aws s3 cp --region ap-northeast-2 --acl private s3://cicd-study-jar-bucket/cicd-jar.zip build/libs/
-                    unzip build/libs/cicd-jar.zip
+                    aws s3 cp --region ap-northeast-2 --acl private s3://cicd-stud  y-jar-bucket/CICD_Study-0.0.1-SNAPSHOT.jar build/libs/
                     docker build -t ${ECR_DOCKER_IMAGE}:${ECR_DOCKER_TAG} .
                     '''
                 }
